@@ -45,6 +45,10 @@ spring:
       validation-query: select 'x'
       web-stat-filter:
         exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+  redis:
+    database: ${REDIS_DATABASE:1}
+    host: ${REDIS_HOST:192.168.25.201}
+    port: ${REDIS_PORT:6379}
   http:
     # 过滤字符编码
     encoding:

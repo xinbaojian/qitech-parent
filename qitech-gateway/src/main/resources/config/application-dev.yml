@@ -2,21 +2,21 @@ spring:
   cloud:
     gateway:
       routes:
-#        - id: SECURITY-FIRE-SAFETY
-#          # 重点！/info必须使用http进行转发，lb代表从注册中心获取服务
-#          uri: lb://SECURITY-FIRE-SAFETY
-#          predicates:
-#            # 重点！转发该路径！
-#            - Path=/firesafety/**
-#          filters:
-#            - StripPrefix=1
+        - id: QITECH-DEMO
+          # 重点！/info必须使用http进行转发，lb代表从注册中心获取服务
+          uri: lb://QITECH-DEMO
+          predicates:
+            # 重点！转发该路径！
+            - Path=/demo/**
+          filters:
+            - StripPrefix=1
       discovery:
         locator:
           enabled: true
 
 eureka:
   instance:
-    hostname: gateway-${random.value}
+    hostname: qitech-gateway-${random.value}
     instance-id: ${eureka.instance.hostname}:${server.port}:@project.version@
     ip-address: ${INSTANCE_IP:localhost}
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
