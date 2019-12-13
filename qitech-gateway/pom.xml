@@ -7,15 +7,10 @@
         <artifactId>qitech-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.qitech</groupId>
     <artifactId>qitech-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gateway</name>
+    <name>qitech-gateway</name>
     <description>spring cloud gateway</description>
-
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -56,7 +51,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>gateway</finalName>
+        <finalName>qitech-gateway</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

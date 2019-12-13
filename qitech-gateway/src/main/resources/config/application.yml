@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: gateway
+    name: ${APPLICATION_NAME:qitech-gateway}
   profiles:
     active: ${PROFILE_ACTIVE:dev}
   jackson:

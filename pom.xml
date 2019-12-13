@@ -22,6 +22,17 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <pagehelper.version>1.2.13</pagehelper.version>
+        <java.version>1.8</java.version>
+        <druid-version>1.1.21</druid-version>
+        <mybatis.version>2.1.1</mybatis.version>
+        <tkmybatis.version>2.1.5</tkmybatis.version>
+        <hutool.version>5.0.7</hutool.version>
+        <postgresql.version>42.2.9</postgresql.version>
+        <mybatis-generator-core.version>1.4.0</mybatis-generator-core.version>
     </properties>
 
     <dependencyManagement>
@@ -36,7 +47,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-core</artifactId>
-                <version>5.0.7</version>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
