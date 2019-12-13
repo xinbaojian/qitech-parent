@@ -1,0 +1,17 @@
+server:
+  port: ${SERVER_PORT:8801}
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: ${PROFILE_ACTIVE:dev}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
