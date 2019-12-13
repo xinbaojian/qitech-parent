@@ -9,5 +9,10 @@ import java.util.List;
  */
 public interface IDictService {
 
+    /**
+     * 查询列表
+     *
+     * @return
+     */
     List<SysDict> list();
 }
