@@ -9,5 +9,5 @@ public interface UrlConstant {
     /**
      * controller 根路径及接口版本号
      */
-    String ROOT = "/demo";
+    String ROOT = "/api";
 }
