@@ -1,0 +1,31 @@
+server:
+  port: ${SERVER_PORT:8803}
+spring:
+  application:
+    name: ${APPLICATION_NAME:qitech-rbac}
+  profiles:
+    active: ${PROFILE_ACTIVE:dev}
+  http:
+    # 过滤字符编码
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  flyway:
+    enabled: false
+mybatis:
+  type-aliases-package: com.qitech.qitechdemo.entity
+  mapper-locations: classpath:mapper/*.xml
+# pagehelper配置
+pagehelper:
+  helperDialect: postgresql
+  #分页合理化，pageNum<=0则查询第一页的记录；pageNum大于总页数，则查询最后一页的记录
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  config: classpath:config/logback.xml
+  # 打印sql
+  level:
+    com.qitech.mybatis.mapper : debug

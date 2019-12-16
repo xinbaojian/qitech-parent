@@ -74,5 +74,6 @@
         <module>mybatis-generator-lombok-plugin</module>
         <module>qitech-gateway</module>
         <module>qitech-demo</module>
+        <module>qitech-rbac</module>
     </modules>
 </project>
