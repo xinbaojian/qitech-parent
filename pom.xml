@@ -47,16 +47,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-core</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
@@ -72,6 +62,7 @@
 
     <modules>
         <module>mybatis-generator-lombok-plugin</module>
+        <module>qitech-utils</module>
         <module>qitech-gateway</module>
         <module>qitech-demo</module>
         <module>qitech-rbac</module>
