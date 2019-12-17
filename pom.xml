@@ -65,6 +65,6 @@
         <module>qitech-utils</module>
         <module>qitech-gateway</module>
         <module>qitech-demo</module>
-        <module>qitech-rbac</module>
+        <module>qitech-oauth2</module>
     </modules>
 </project>

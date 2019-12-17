@@ -1,10 +1,10 @@
-package com.qitech.qitechrbac;
+package com.qitech.qitechoauth2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class QitechRbacApplicationTests {
+class QitechOauth2ApplicationTests {
 
     @Test
     void contextLoads() {
