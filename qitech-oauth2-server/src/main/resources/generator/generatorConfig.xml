@@ -62,6 +62,8 @@
 <!--            <ignoreColumn column="backup4" delimitedColumnName=""/>-->
 <!--            <ignoreColumn column="backup5" delimitedColumnName=""/>-->
 <!--        </table>-->
-<!--        <table tableName="sys_dict" domainObjectName="SysDict"/>-->
+        <table schema="oauth" tableName="sys_user" domainObjectName="SysUser"/>
+        <table schema="oauth" tableName="sys_role" domainObjectName="SysRole"/>
+        <table schema="oauth" tableName="sys_user_role" domainObjectName="SysUserRole"/>
     </context>
 </generatorConfiguration>
