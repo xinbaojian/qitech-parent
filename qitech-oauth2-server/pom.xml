@@ -84,12 +84,6 @@
             <version>${druid-version}</version>
         </dependency>
         <!-- druid end -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
         <!--数据库驱动-->
         <dependency>
             <groupId>org.postgresql</groupId>

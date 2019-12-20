@@ -1,16 +1,13 @@
 package com.qitech.qitechdemo.controller;
 
 import com.qitech.qitechdemo.constant.UrlConstant;
-import com.qitech.qitechdemo.entity.SysDict;
-import com.qitech.qitechdemo.service.IDictService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.security.Principal;
 
 /**
  * @author xinbj
@@ -20,16 +17,15 @@ import java.util.List;
 @RequestMapping(UrlConstant.ROOT)
 public class DemoController {
 
-    private IDictService dictService;
 
-    @Autowired
-    public DemoController(IDictService dictService) {
-        this.dictService = dictService;
-    }
-
-    @GetMapping("/list")
-    public ResponseEntity<?> list() {
-        List<SysDict> list = dictService.list();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    /**
+     * 获取当前登录的用户信息
+     *
+     * @param principal 用户信息
+     * @return http 响应
+     */
+    @GetMapping("/auth/me")
+    public HttpEntity<?> oauthMe(Principal principal) {
+        return ResponseEntity.ok(principal);
     }
 }

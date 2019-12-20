@@ -78,6 +78,19 @@ eureka:
     # 默认30s
     registryFetchIntervalSeconds: 5
 
+# 设置oauth2 资源服务器
+security:
+  oauth2:
+    resource:
+      token-info-uri: ${TOKEN_INFO_URI:http://localhost:8000/oauth/check_token}
+    client:
+      access-token-uri: ${ACCESS_TOKEN_URI:http://localhost:8000/oauth/token}
+      client-id: ${CLIENT_ID:web}
+      # 这里必须是加密前的密钥
+      client-secret: ${CLIENT_SECRET:websecret}
+      grant-type: ${GRANT_TYPE:authorization_code,password,refresh_token}
+      scope: ${SCOPE:all}
+
 #配置是否启用Swagger
 swagger:
-  enable: true
+  enable: ${SWAGGER_ENABLE:true}
