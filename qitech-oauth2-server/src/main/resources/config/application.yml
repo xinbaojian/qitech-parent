@@ -1,45 +1,50 @@
 server:
-  port: 8000
+  port: ${SERVER_PORT:8000}
+spring:
+  application:
+    name: ${APPLICATION_NAME:qitech-oauth2-server}
+  profiles:
+    active: ${PROFILE_ACTIVE:dev}
+  http:
+    # 过滤字符编码
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  flyway:
+    # 是否启用flyway
+    enabled: true
+    ## 编码格式，默认UTF-8
+    encoding: UTF-8
+    ## 迁移sql脚本文件存放路径，默认db/migration
+    locations: classpath:db/migration
+    ## 迁移sql脚本文件名称的前缀，默认V
+    sqlMigrationPrefix: V
+    ## 迁移sql脚本文件名称的分隔符，默认2个下划线__
+    sqlMigrationSeparator: __
+    # 迁移sql脚本文件名称的后缀
+    sqlMigrationSuffixes: .sql
+    # 开始执行基准迁移时对现有的schema的版本打标签，默认值为1
+    baseline-version: 0
+    # 迁移时是否进行校验，默认true
+    validateOnMigrate: true
+    # 设置为true，当迁移发现数据库非空且存在没有元数据的表时，自动执行基准迁移，新建schema_version表
+    baselineOnMigrate: true
+    # postgres10没有引入这个不提示错误，postgres12没有引入会报错
+    schemas: oauth
+mybatis:
+  type-aliases-package: com.qitech.qitechoauth2.entity
+  mapper-locations: classpath:mapper/*.xml
+# pagehelper配置
+pagehelper:
+  helperDialect: postgresql
+  #分页合理化，pageNum<=0则查询第一页的记录；pageNum大于总页数，则查询最后一页的记录
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 logging:
+  config: classpath:config/logback.xml
+  # 打印sql
   level:
-    org:
-      springframework:
-        security: DEBUG
-
-
-application:
-  security:
-    oauth:
-      client[0]:
-        registered-redirect-uri: http://example.com
-        # 客户端 id
-        client-id: web
-        # 客户端密钥
-        client-secret: websecret
-        # 授权范围
-        scope: all
-        # token 有效期
-        access-token-validity-seconds: 6000
-        # 刷新 token 的有效期
-        refresh-token-validity-seconds: 6000
-        # 允许的授权类型
-        authorized_grant_types: authorization_code,password,refresh_token
-        # 可以访问的资源 id
-        resource-ids: oauth2
-      client[1]:
-        registered-redirect-uri: http://example.com
-        # 客户端 id
-        client-id: app
-        # 客户端密钥
-        client-secret: appsecret
-        # 授权范围
-        scope: all
-        # token 有效期
-        access-token-validity-seconds: 6000
-        # 刷新 token 的有效期
-        refresh-token-validity-seconds: 6000
-        # 允许的授权类型
-        authorized_grant_types: authorization_code,password,refresh_token
-        # 可以访问的资源 id
-        resource-ids: oauth2
+    com.qitech.mybatis.mapper : debug
