@@ -13,5 +13,10 @@ public class UserDto {
 
     private String password;
 
+    /**
+     * 登录方式
+     */
+    private String loginType;
+
 
 }

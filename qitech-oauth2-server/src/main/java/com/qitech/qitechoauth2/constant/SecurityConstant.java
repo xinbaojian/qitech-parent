@@ -12,6 +12,8 @@ public interface SecurityConstant {
      * 用户名密码登录请求处理url
      */
     String LOGIN_PROCESSING_URL_FORM = "/auth/login";
+
+    String CODE_SMS_URL = "/api/code/**";
     /**
      * 指纹登录请求处理url
      */

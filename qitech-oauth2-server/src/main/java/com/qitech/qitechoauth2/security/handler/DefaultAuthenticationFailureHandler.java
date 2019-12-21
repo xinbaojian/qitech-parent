@@ -17,6 +17,6 @@ import java.io.IOException;
 public class DefaultAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        response.getWriter().println("出错了");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
     }
 }

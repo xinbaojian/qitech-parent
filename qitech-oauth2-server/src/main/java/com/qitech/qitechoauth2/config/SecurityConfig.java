@@ -1,19 +1,17 @@
 package com.qitech.qitechoauth2.config;
 
-import com.qitech.qitechoauth2.security.validate.tradition.TraditionSecurityConfig;
-import com.qitech.qitechoauth2.security.validate.tradition.TraditionUserDetailsService;
+import com.qitech.qitechoauth2.constant.SecurityConstant;
+import com.qitech.qitechoauth2.security.validate.tradition.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /**
  * @author xinbj
@@ -23,10 +21,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private TraditionSecurityConfig traditionSecurityConfig;
-
-    @Autowired
-    private TraditionUserDetailsService userDetailService;
+    private CustomUserDetailsService userDetailService;
 
     /**
      * 密码加密方式，spring 5 后必须对密码进行加密
@@ -41,23 +36,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                // 不同登陆方式的配置
-                .apply(traditionSecurityConfig)
-                .and()
                 .authorizeRequests()
                 // 如果有允许匿名的url，填在下面
-//                .antMatchers("/register", "/auth/register", "/auth/face-check", SecurityConstant.LOGIN_PROCESSING_URL_FACE).permitAll()
+                //获取验证码连接放行
+                .antMatchers(SecurityConstant.CODE_SMS_URL).permitAll()
 //                .antMatchers("/api/v1/public/**").permitAll()
+                //放行所有OPTIONS请求
+                .antMatchers(HttpMethod.OPTIONS, "**").permitAll()
                 .anyRequest().authenticated().and()
-                .logout().permitAll();
-
-        // 关闭CSRF跨域
-        http.csrf().disable();
+                .logout().permitAll().and()
+                //禁用session
+                .sessionManagement().disable()
+                // 禁用CSRF
+                .csrf().disable()
+                //禁用form登录
+                .formLogin().disable()
+                //支持跨域
+                .cors();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailService)
+                .passwordEncoder(passwordEncoder());
     }
 
     /**

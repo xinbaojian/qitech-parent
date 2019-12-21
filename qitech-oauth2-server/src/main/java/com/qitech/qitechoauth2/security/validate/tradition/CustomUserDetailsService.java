@@ -27,7 +27,7 @@ import java.util.Optional;
  * @date 2019/12/20 16:34
  */
 @Service
-public class TraditionUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private ISysUserService userService;
 
@@ -36,7 +36,7 @@ public class TraditionUserDetailsService implements UserDetailsService {
     private ISysUserRoleService userRoleService;
 
     @Autowired
-    public TraditionUserDetailsService(ISysUserService userService, ISysRoleService roleService, ISysUserRoleService userRoleService) {
+    public CustomUserDetailsService(ISysUserService userService, ISysRoleService roleService, ISysUserRoleService userRoleService) {
         this.userService = userService;
         this.roleService = roleService;
         this.userRoleService = userRoleService;
@@ -64,7 +64,7 @@ public class TraditionUserDetailsService implements UserDetailsService {
         List<SysUserRole> userRoles = userRoleService.selectByUserId(user.getId());
         for (SysUserRole userRole : userRoles) {
             SysRole role = roleService.selectByPrimaryKey(userRole.getRoleId());
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
+            authorities.add(new SimpleGrantedAuthority(role.getCode()));
         }
         // 返回UserDetails实现类
         return new User(user.getUsername(), user.getPassword(), authorities);
