@@ -1,4 +1,4 @@
-package com.qitech.qitechoauth2.security.validate;
+package com.qitech.qitechoauth2.exception;
 
 /**
  * 自定义验证码处理器

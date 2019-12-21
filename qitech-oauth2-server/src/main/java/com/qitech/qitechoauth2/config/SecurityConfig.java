@@ -1,7 +1,10 @@
 package com.qitech.qitechoauth2.config;
 
 import com.qitech.qitechoauth2.constant.SecurityConstant;
-import com.qitech.qitechoauth2.security.validate.tradition.CustomUserDetailsService;
+import com.qitech.qitechoauth2.security.validate.filter.ValidateCodeFilter;
+import com.qitech.qitechoauth2.security.validate.userdetails.DefaultUserDetailsService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -12,16 +15,20 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 
 /**
  * @author xinbj
  * @date 2019/12/18 15:00
  */
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomUserDetailsService userDetailService;
+    private DefaultUserDetailsService userDetailService;
+
+    private final @NonNull ValidateCodeFilter validateCodeFilter;
 
     /**
      * 密码加密方式，spring 5 后必须对密码进行加密
@@ -40,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 如果有允许匿名的url，填在下面
                 //获取验证码连接放行
                 .antMatchers(SecurityConstant.CODE_SMS_URL).permitAll()
+                .antMatchers(SecurityConstant.CUSTOM_OAUTH_URL_PATTERN).permitAll()
 //                .antMatchers("/api/v1/public/**").permitAll()
                 //放行所有OPTIONS请求
                 .antMatchers(HttpMethod.OPTIONS, "**").permitAll()
@@ -53,6 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()
                 //支持跨域
                 .cors();
+        //添加过滤器
+        http.addFilterBefore(validateCodeFilter, AbstractPreAuthenticatedProcessingFilter.class);
     }
 
     @Override

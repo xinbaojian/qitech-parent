@@ -1,6 +1,6 @@
 package com.qitech.qitechoauth2.security.validate.code;
 
-import com.qitech.qitechoauth2.security.validate.ValidateCodeException;
+import com.qitech.qitechoauth2.exception.ValidateCodeException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

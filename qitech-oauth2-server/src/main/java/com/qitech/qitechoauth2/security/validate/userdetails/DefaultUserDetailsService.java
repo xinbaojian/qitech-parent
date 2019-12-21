@@ -1,4 +1,4 @@
-package com.qitech.qitechoauth2.security.validate.tradition;
+package com.qitech.qitechoauth2.security.validate.userdetails;
 
 import com.qitech.qitechoauth2.entity.SysRole;
 import com.qitech.qitechoauth2.entity.SysUser;
@@ -7,6 +7,7 @@ import com.qitech.qitechoauth2.service.ISysRoleService;
 import com.qitech.qitechoauth2.service.ISysUserRoleService;
 import com.qitech.qitechoauth2.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -27,7 +28,8 @@ import java.util.Optional;
  * @date 2019/12/20 16:34
  */
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+@Primary
+public class DefaultUserDetailsService implements UserDetailsService {
 
     private ISysUserService userService;
 
@@ -36,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private ISysUserRoleService userRoleService;
 
     @Autowired
-    public CustomUserDetailsService(ISysUserService userService, ISysRoleService roleService, ISysUserRoleService userRoleService) {
+    public DefaultUserDetailsService(ISysUserService userService, ISysRoleService roleService, ISysUserRoleService userRoleService) {
         this.userService = userService;
         this.roleService = roleService;
         this.userRoleService = userRoleService;

@@ -1,7 +1,7 @@
 package com.qitech.qitechoauth2.security.validate.code;
 
 import com.qitech.qitechoauth2.security.validate.IValidateCodeRepository;
-import com.qitech.qitechoauth2.security.validate.ValidateCodeException;
+import com.qitech.qitechoauth2.exception.ValidateCodeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.context.request.ServletWebRequest;

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 获取验证码接口
+ *
  * @author xinbj
  * @date 2019/12/21 15:06
  */
