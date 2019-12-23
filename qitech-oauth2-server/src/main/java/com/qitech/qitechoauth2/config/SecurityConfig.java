@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SecurityConstant.CODE_SMS_URL).permitAll()
                 .antMatchers(SecurityConstant.CUSTOM_OAUTH_URL_PATTERN).permitAll()
 //                .antMatchers("/api/v1/public/**").permitAll()
-                //放行所有OPTIONS请求
+                //放行所有OPTIONS请求,防止前端 axios 等框架发送的OPTION请求被拦截
                 .antMatchers(HttpMethod.OPTIONS, "**").permitAll()
                 .anyRequest().authenticated().and()
                 .logout().permitAll().and()
