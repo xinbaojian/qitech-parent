@@ -1,13 +1,11 @@
 
-## Mybatis generator
+## Mybatis plus generator
 
-编辑`src/main/resources/generator/generatorConfig.xml`文件
+编辑`com.qitech.qitechdemo.config.MysqlGenerator.java`文件
 
 
-执行命令生成相关文件
-```bash
-mvn mybatis-generator:generate
-```
+执行该文件生成相关文件
+
 
 ## Tips:
 
