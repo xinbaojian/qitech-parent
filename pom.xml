@@ -65,7 +65,6 @@
 
 
     <modules>
-        <module>mybatis-generator-lombok-plugin</module>
         <module>qitech-utils</module>
         <module>qitech-gateway</module>
         <module>qitech-oauth2-server</module>
