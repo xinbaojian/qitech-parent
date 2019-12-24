@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST:192.168.25.201}:${DB_PORT:5432}/${DB_NAME:test}?characterEncoding=utf8&useSSL=false&currentSchema=public
+    url: jdbc:postgresql://${DB_HOST:192.168.25.201}:${DB_PORT:5432}/${DB_NAME:test}?characterEncoding=utf8&useSSL=false&currentSchema=system_config
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:123456}
     druid:
@@ -59,7 +59,7 @@ spring:
 
 eureka:
   instance:
-    hostname: qitech-demo-${random.value}
+    hostname: qitech-system-config-${random.value}
     instance-id: ${eureka.instance.hostname}:${server.port}:@project.version@
     ip-address: ${INSTANCE_IP:localhost}
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除

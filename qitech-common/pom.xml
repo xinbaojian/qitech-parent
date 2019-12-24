@@ -58,7 +58,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>com.qitech.qitechdemo.QitechDemoApplication</mainClass>
+          <mainClass>com.qitech.system.QitechDemoApplication</mainClass>
         </configuration>
       </plugin>
     </plugins>

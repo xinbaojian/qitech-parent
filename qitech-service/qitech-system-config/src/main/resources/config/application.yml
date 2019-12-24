@@ -1,0 +1,54 @@
+server:
+  port: ${SERVER_PORT:8805}
+spring:
+  application:
+    name: ${APPLICATION_NAME:qitech-system-config}
+  profiles:
+    active: ${PROFILE_ACTIVE:dev}
+  http:
+    # 过滤字符编码
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  flyway:
+    # 是否启用flyway
+    enabled: true
+    ## 编码格式，默认UTF-8
+    encoding: UTF-8
+    ## 迁移sql脚本文件存放路径，默认db/migration
+    locations: classpath:db/migration
+    ## 迁移sql脚本文件名称的前缀，默认V
+    sqlMigrationPrefix: V
+    ## 迁移sql脚本文件名称的分隔符，默认2个下划线__
+    sqlMigrationSeparator: __
+    # 迁移sql脚本文件名称的后缀
+    sqlMigrationSuffixes: .sql
+    # 开始执行基准迁移时对现有的schema的版本打标签，默认值为1
+    baseline-version: 0
+    # 迁移时是否进行校验，默认true
+    validateOnMigrate: true
+    # 设置为true，当迁移发现数据库非空且存在没有元数据的表时，自动执行基准迁移，新建schema_version表
+    baselineOnMigrate: true
+    # postgres10没有引入这个不提示错误，postgres12没有引入会报错
+    schemas: system_config
+
+mybatis-plus:
+  global-config:
+    db-config:
+      # 全局默认主键类型
+      id-type: UUID
+      # 表名、是否使用下划线命名，默认数据库表使用下划线命名
+      table-underline: true
+      # 逻辑已删除值(默认为 1)
+      #logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      #logic-not-delete-value: 0
+  mapper-locations: classpath:/mapper/*.xml
+
+
+logging:
+  config: classpath:config/logback.xml
+  # 打印sql
+  level:
+    com.qitech.mybatis.mapper : debug

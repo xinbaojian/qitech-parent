@@ -37,6 +37,8 @@
         <swagger.version>2.9.2</swagger.version>
         <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <flyway.version>6.1.2</flyway.version>
+        <mybatis-plus.version>3.3.0</mybatis-plus.version>
+        <velocity-engine-core.version>2.1</velocity-engine-core.version>
     </properties>
 
     <dependencyManagement>
